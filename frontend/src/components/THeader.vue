@@ -1,8 +1,11 @@
 <template>
   <div class="THeader">
+    <span><i class="el-icon-s-home"></i> 主页</span>
+    <span><i class="el-icon-help"></i> 动态</span>
+    <span><i class="el-icon-hot-water"></i> 讨论</span>
     <span><i class="el-icon-user"></i> 好友</span>
     <span><i class="el-icon-share"></i> 推荐</span>
-    <span><i class="el-icon-help"></i> 动态</span>
+    <span style="margin-right: 32%"><i class="el-icon-edit"></i> 评论</span>
     <span><i class="el-icon-bell"></i> 消息</span>
     <span><i class="el-icon-setting"></i> 设置</span>
     <span v-if="isLogin"><i class="el-icon-user-solid"></i> 登录</span>
@@ -22,8 +25,8 @@ export default {
   },
   data () {
     return {
+      username: 'zyk0108',
       message: 12,
-      activeName: 'second',
       isLogin: false
     }
   },
@@ -36,10 +39,6 @@ export default {
 </script>
 
 <style scoped>
-.msg{
-  font-family: Hiragino Sans GB;
-  color:#D1322E;
-}
 .THeader{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   line-height: 40px;
