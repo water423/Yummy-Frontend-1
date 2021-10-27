@@ -1,42 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/Login'
+import HelloWorld from '@/components/HelloWorld'
+import PersonSpace from '../pages/PersonSpace'
 
+Vue.use(Router)
 
-Vue.use(Router);
-
-export const router = new Router({
+export default new Router({
   routes: [
     {
-      path: '/login',
-      name: 'Login',
-      component: Login
+      path: '/',
+      name: 'HelloWorld',
+      component: HelloWorld
     },
-
-
-
-
-
-
-
+    {
+      path: '/PersonSpace',
+      name: 'PersonSpace',
+      component: PersonSpace
+    }
   ]
 })
-
-
-/*
-// 前端登录拦截
-router.beforeEach(function (to, from ,next) {
-  if (to.matched.some(record => record.meta.requireAuth)) {
-    if (store.state.token) {
-      next()
-    } else {
-      next({
-        path: '/login',
-        query: {redirect: to.fullPath} // 登录成功之后重新跳转到该路由
-      })
-    }
-  } else {
-    next()
-  }
-})
-*/
