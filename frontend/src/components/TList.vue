@@ -4,18 +4,95 @@
       <el-col :span="6">
         <el-card shadow="always" class="l1">
           <div class="focus">
-            关注  ｜  被关注
-            <br>
-            <span>{{focus}}{{beFocus}}</span>
+            <p class="item">个人简介</p>
+            <div class="small_list">
+              <div>
+                <div>
+                  <p><i class="el-icon-location" style="color: #4F7AAF"></i>地点</p>
+                  <span>{{person.location}}</span>
+                </div>
+              </div>
+              <div>
+                <div v-if="person.sex=='male'">
+                  <p><i class="el-icon-female" style="color: darkgoldenrod"></i>性别</p>
+                  <span>{{person.sex}}</span>
+                </div>
+                <div v-else>
+                  <p><i class="el-icon-male" style="color: darkgoldenrod"></i>性别</p>
+                  <span>{{person.sex}}</span>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p><i class="el-icon-collection-tag" style="color: #D1322E"></i>标签</p>
+                  <div id="label">
+                    <span v-for="(item,index) in person.label" v-bind:key="index" style="margin-left: 0;margin-right: 15px;line-height: 25px">
+                    {{item}}
+                  </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <el-button type="mini" style="width: 100%">编辑个人资料</el-button>
+          <el-button type="mini" style="width: 100%;margin-top: 10px;margin-bottom: 20px">编辑个人资料</el-button>
           <div>
-            <p style="text-align: left;font-weight: bold">相关数据</p>
-            <div id="small_list">
-              <p><i class="el-icon-medal" style="color: goldenrod"></i>声望等级</p>
-              <p><i class="el-icon-view" style="color: #4F7AAF"></i>浏览总数</p>
-              <p><i class="el-icon-edit" style="color: #F27D2E"></i>被评论数</p>
-              <p><i class="el-icon-star-on" style="color: #D1322E"></i>获得点赞</p>
+            <p class="item">功能集锦</p>
+            <div class="small_list">
+              <div class="small_list_item">
+                <div>
+                  <p><i class="el-icon-user"></i>我的好友</p>
+                </div>
+              </div>
+              <div class="small_list_item">
+                <div>
+                  <p><i class="el-icon-help"></i>我的动态</p>
+                </div>
+              </div>
+              <div class="small_list_item">
+                <div>
+                  <p><i class="el-icon-edit-outline"></i>评价中心</p>
+                </div>
+              </div>
+              <div class="small_list_item">
+                <div>
+                  <p><i class="el-icon-share"></i>我的推荐</p>
+                </div>
+              </div>
+              <div class="small_list_item">
+                <div>
+                  <p><i class="el-icon-video-camera-solid"></i>我看过的</p>
+                </div>
+              </div>
+              <div class="small_list_item">
+                <div>
+                  <p><i class="el-icon-service"></i>客服反馈</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="item">相关数据</p>
+            <div class="small_list">
+              <div class="small_list_item">
+                <div>
+                  <p><i class="el-icon-medal" style="color: goldenrod"></i>声望等级 {{data[0]}}</p>
+                </div>
+              </div>
+              <div class="small_list_item">
+                <div>
+                  <p><i class="el-icon-view" style="color: #4F7AAF"></i>浏览总数 {{data[1]}}</p>
+                </div>
+              </div>
+              <div class="small_list_item">
+                <div>
+                  <p><i class="el-icon-edit" style="color: #F27D2E"></i>被评论数 {{data[2]}}</p>
+                </div>
+              </div>
+              <div class="small_list_item">
+                <div>
+                  <p><i class="el-icon-star-on" style="color: #D1322E"></i>获得点赞 {{data[3]}}</p>
+                </div>
+              </div>
             </div>
           </div>
         </el-card>
@@ -39,8 +116,13 @@ export default {
   name: 'TList',
   data () {
     return {
-      focus: 0,
-      beFocus: 0
+      person: {
+        name: 'zyk0108',
+        sex: 'male',
+        location: 'ShangHai',
+        label: ['kol', 'super star', 'delicious food discover', 'big man']
+      },
+      data: [12, 3, 4, 56]
     }
   }
 }
@@ -58,11 +140,37 @@ export default {
 .focus{
   padding-bottom: 10px;
 }
-#small_list{
+.item{
+  text-align: left;
+  font-weight: bold;
+}
+.small_list{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  line-height: 40px;
   font-size: 14px;
   font-weight: 500;
   padding-left: 10px;
+}
+.small_list_item{
+  cursor: pointer;
+}
+.small_list_item div p{
+  background-color: #F8F8FF;
+  border-radius: 2px;
+  margin-right: 30%;
+  line-height: 35px;
+  padding-left: 5%;
+}
+.small_list div div p{
+  margin-bottom: 0;
+}
+.small_list div div span{
+  margin-left: 15px;
+  padding:0 5px;
+  background-color: #E4E7ED;
+  border-radius: 2px;
+  margin-bottom: 5px;
+}
+#label{
+  margin-left: 15px;
 }
 </style>
