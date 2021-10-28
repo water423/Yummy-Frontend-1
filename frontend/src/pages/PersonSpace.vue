@@ -1,8 +1,10 @@
 <template>
   <div>
-    <THeader></THeader>
-    <TUserInfoShow></TUserInfoShow>
-    <TList></TList>
+    <THeader ref="header"></THeader>
+    <div class="main1">
+      <TUserInfoShow></TUserInfoShow>
+      <TList></TList>
+    </div>
   </div>
 </template>
 
@@ -12,10 +14,32 @@ import TUserInfoShow from '../components/TUserInfoShow'
 import TList from '../components/TList'
 export default {
   name: 'PersonSpace',
-  components: {TList, TUserInfoShow, THeader}
+  components: {TList, TUserInfoShow, THeader},
+  data () {
+    return {
+      userInfo: {
+        name: null,
+        isLogin: false
+      }
+    }
+  },
+  mounted () {
+    // 初始化用户info
+    this.getUserInfo()
+  },
+  methods: {
+    getUserInfo () {
+      let data = this.$refs.header.resUserInfo()
+      this.userInfo.name = data.name
+      this.userInfo.isLogin = data.isLogin
+    }
+  }
 }
 </script>
 
 <style scoped>
-
+.main1{
+  position: relative;
+  background-color: #F8F8FF;
+}
 </style>

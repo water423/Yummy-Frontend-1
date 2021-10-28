@@ -6,6 +6,7 @@ import PersonSpace from '../pages/PersonSpace'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history', // 后端配置的时候需要注意：https://router.vuejs.org/zh/guide/essentials/history-mode.html
   routes: [
     {
       path: '/',
