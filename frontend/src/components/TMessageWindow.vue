@@ -4,37 +4,35 @@
     消息
   </div>
   <div class="header_line">
-    <span id="t1" @click="changeColor(1)">私信</span>
-    <span id="t2" @click="changeColor(2)">评论</span>
-    <span id="t3" @click="changeColor(3)">通知</span>
-    <span id="t4" @click="changeColor(4)">@我</span>
+    <el-badge :value="0" :max="99" class="item">
+      <button id="t1" @click="changeColor(1)">私信</button>
+    </el-badge>
+    <el-badge :value="8" :max="99" class="item">
+      <button id="t2" @click="changeColor(2)">评论</button>
+    </el-badge>
+    <el-badge :value="23" :max="99" class="item">
+      <button id="t3" @click="changeColor(3)">通知</button>
+    </el-badge>
+    <el-badge :value="9" :max="99" class="item">
+      <button id="t4" @click="changeColor(4)">@我</button>
+    </el-badge>
   </div>
   <div class="list">
-    <div v-for="(item, index) in data" v-bind:key="index">
-      {{item.name}}
-    </div>
+    <TFriendMessageList></TFriendMessageList>
   </div>
   <div>
-    <el-button type="mini" @click="closeMessageWindow">关闭</el-button>
+    <el-button size="mini" type="primary" @click="closeMessageWindow" id="close_button">关闭</el-button>
   </div>
 </div>
 </template>
 
 <script>
+import TFriendMessageList from './TFriendMessageList'
 export default {
   name: 'TMessageWindow',
+  components: {TFriendMessageList},
   data () {
     return {
-      data: [
-        {
-          name: 'zhh',
-          url: 'static/user/img.png'
-        },
-        {
-          name: 'zdf',
-          url: 'static/user/img.png'
-        }
-      ]
     }
   },
   created () {
@@ -54,7 +52,7 @@ export default {
         document.getElementById(idArr[i]).style.backgroundColor = '#ffffff'
       }
       if (ele != null) {
-        ele.style.backgroundColor = '#A9A9A9FF'
+        ele.style.backgroundColor = '#4F7AAF'
       }
     }
   }
@@ -73,32 +71,34 @@ export default {
   font-weight: 800;
 }
 .header_line{
-  border: #D3D3D3 solid 1px;
   border-radius: 12px;
-  width: 58%;
-  line-height: 18px;
+  display: inline;
+  line-height: 22px;
 }
-.header_line span{
-  display: inline-block;
-  text-align: center;
-  width: 24.2%;
-  padding: 5px 0;
-  border-radius: 12px;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 800;
+.item{
+  width: 10%;
+  margin-right: 2%;
 }
-.header_line span:hover{
+.item button{
+  width: 100%!important;
+  border-radius: 6px;
+  border: slategrey solid 1px;
+}
+.item button:hover{
   cursor: pointer;
-  background: darkgray;
+  background-color: #DCDCDC !important;
 }
 .list{
   margin: 8px 0;
   border: slategrey solid 1px;
   width: 100%;
   border-radius: 6px;
+  height: 400px;
+  overflow: auto;
 }
-.list div{
-  margin: 0 5px;
+#close_button{
+  float: right;
+  width: 10%;
+  margin-bottom: 20px;
 }
 </style>
