@@ -56,6 +56,7 @@ export default {
   left: 0;
   margin: 0 5%;
   position: absolute;
+  opacity: 0.45;
 }
 #me{
   z-index: 1;
@@ -65,7 +66,7 @@ export default {
   width: 60%;
   text-align: left;
   border-radius: 5px;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 #picture{
   height: 80px;

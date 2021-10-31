@@ -1,7 +1,7 @@
 <template>
   <div>
     <THeader ref="header"></THeader>
-    <div class="main1">
+    <div class="main">
       <TUserInfoShow></TUserInfoShow>
       <TList></TList>
     </div>
@@ -25,7 +25,7 @@ export default {
   },
   mounted () {
     // 初始化用户info
-    this.getUserInfo()
+    // this.getUserInfo()
   },
   methods: {
     getUserInfo () {
@@ -38,8 +38,9 @@ export default {
 </script>
 
 <style scoped>
-.main1{
+.main{
   position: relative;
   background-color: #F8F8FF;
+  min-width: 1400px;
 }
 </style>

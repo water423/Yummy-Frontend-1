@@ -1,5 +1,20 @@
 <template>
   <div class="container">
+    <el-row :gutter="12">
+      <el-col :span="8" class="title">
+        <el-card shadow="always">
+          <div style="text-align: left">
+            <div>我的好友</div>
+            <span style="padding-left: 4%;font-weight: 900">{{friendNum}}</span>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="16">
+        <el-card shadow="always">
+          board...
+        </el-card>
+      </el-col>
+    </el-row>
     <el-card class="person" shadow="always" v-for="(person, index) in data" v-bind:key="index">
       <div id="picture">
         <img :src="person.imgUrl">
@@ -19,6 +34,7 @@ export default {
   name: 'TPersonCard',
   data () {
     return {
+      friendNum: 3,
       data: [
         {
           name: 'Friend1',
@@ -38,13 +54,11 @@ export default {
     }
   },
   created () {
-    this.getUserInfo()
+    //
   },
   methods: {
-    getUserInfo () {
-      this.bus.$on('getUserInfo', (data) => {
-        console.log(data)
-      })
+    getAllFriendInfo (fromName) {
+      //
     }
   }
 }
@@ -84,5 +98,11 @@ export default {
   font-size: 14px;
   font-weight: 800;
   opacity: 1;
+}
+
+.title{
+  margin-bottom: 10px;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 </style>

@@ -40,12 +40,12 @@
             <div class="small_list">
               <div class="small_list_item">
                 <div>
-                  <a href="#list"><p @click="scrollToPosition"><i class="el-icon-user"></i>我的好友</p></a>
+                  <a href="#list"><p @click="clickMyFriend"><i class="el-icon-user"></i>我的好友</p></a>
                 </div>
               </div>
               <div class="small_list_item">
                 <div>
-                  <a href="#list"><p @click="scrollToPosition"><i class="el-icon-help"></i>我的动态</p></a>
+                  <a href="#list"><p @click="clickMyPost"><i class="el-icon-help"></i>我的动态</p></a>
                 </div>
               </div>
               <div class="small_list_item">
@@ -97,18 +97,13 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="9">
-        <el-card shadow="always">
-          board...
-        </el-card>
-      </el-col>
-      <el-col :span="9">
-        <el-card shadow="always">
-          board...
-        </el-card>
-      </el-col>
       <el-col :span="18" id="content">
-        <TContent></TContent>
+        <div v-if="contentType==1">
+          <TContent></TContent>
+        </div>
+        <div v-else-if="contentType==2">
+          <el-empty description="no data..."></el-empty>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -121,6 +116,7 @@ export default {
   components: {TContent},
   data () {
     return {
+      contentType: 0, // 1: person card display
       person: {
         name: 'zyk0108',
         sex: 'male',
@@ -131,6 +127,13 @@ export default {
     }
   },
   methods: {
+    clickMyFriend () {
+      this.contentType = 1
+    },
+    clickMyPost () {
+      this.contentType = 2
+    },
+    // useless???
     scrollToPosition () {
       this.$nextTick(() => {
         let ele = document.getElementById('list')
@@ -140,16 +143,6 @@ export default {
         }
         console.log(document.body.scrollTop)
         console.log(document.body.scrollHeight)
-      })
-    },
-    // 滚动到最底
-    scroll () {
-      // nextTick在DOM完成后在执行
-      this.$nextTick(() => {
-        let element = document.getElementById('chatBody')// 获取对象
-        if (element != null) {
-          element.scrollTop = element.scrollHeight// 滚动高度
-        }
       })
     }
   }
@@ -209,7 +202,6 @@ a{
   color: #333;
 }
 #content{
-  margin-top: 10px;
   float: right;
 }
 </style>
